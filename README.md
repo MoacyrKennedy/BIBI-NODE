@@ -35,6 +35,61 @@ BIBI é uma aplicação de caronas que conecta motoristas e passageiros, permiti
 - Express Validator para validação
 - CORS para segurança
 
+## 🏗️ Arquitetura
+
+O projeto segue uma arquitetura MVC (Model-View-Controller) com algumas adaptações para APIs REST:
+
+```
+src/
+├── config/
+│   └── database.js         # Configuração do MongoDB
+├── controllers/
+│   ├── authController.js   # Controlador de autenticação
+│   ├── userController.js   # Controlador de usuários
+│   ├── rideController.js   # Controlador de caronas
+│   └── vehicleController.js # Controlador de veículos
+├── models/
+│   ├── User.js            # Modelo de usuário
+│   ├── Ride.js            # Modelo de carona
+│   └── Vehicle.js         # Modelo de veículo
+├── routes/
+│   ├── auth.routes.js     # Rotas de autenticação
+│   ├── user.routes.js     # Rotas de usuário
+│   ├── ride.routes.js     # Rotas de caronas
+│   └── vehicle.routes.js  # Rotas de veículos
+├── middleware/
+│   ├── auth.js            # Middleware de autenticação
+│   └── validation.js      # Middleware de validação
+└── app.js                 # Arquivo principal da aplicação
+```
+
+### Camadas da Aplicação
+
+1. **Models**: Representam as entidades do banco de dados e contêm a lógica de negócios relacionada aos dados
+   - Schemas do Mongoose
+   - Validações de dados
+   - Métodos de modelo
+
+2. **Controllers**: Gerenciam as requisições HTTP e coordenam as interações entre Models e clientes
+   - Processamento de requisições
+   - Manipulação de dados
+   - Retorno de respostas
+
+3. **Routes**: Definem os endpoints da API e direcionam as requisições para os controllers apropriados
+   - Definição de rotas
+   - Middleware de autenticação
+   - Validação de dados
+
+4. **Middleware**: Funções que processam as requisições antes dos controllers
+   - Autenticação JWT
+   - Validação de dados
+   - Tratamento de erros
+
+5. **Config**: Configurações do projeto
+   - Conexão com banco de dados
+   - Variáveis de ambiente
+   - Configurações de segurança
+
 ## 📋 Pré-requisitos
 
 - Node.js (v14 ou superior)
